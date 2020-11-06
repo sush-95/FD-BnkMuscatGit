@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Bank_MuscatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_BotMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="EntryBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DisputeData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedbackId" Type="bigint" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="250" />
+          <Property Name="RegMobileNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="RegEmailId" Type="nvarchar" MaxLength="500" />
+          <Property Name="CIF_Number" Type="nvarchar" MaxLength="20" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comment_Eng" Type="nvarchar" MaxLength="500" />
+          <Property Name="Incident_Date" Type="datetime" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="20" />
+          <Property Name="Device_Number" Type="nvarchar" MaxLength="16" />
+          <Property Name="Device_Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="100" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="BotIdEntry" Type="int" />
+          <Property Name="BotIdProcess" Type="int" />
+          <Property Name="BotProcess_StartTime" Type="datetime" />
+          <Property Name="BotProcess_EndTime" Type="datetime" />
+          <Property Name="Bot_Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Bot_Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="User_Action" Type="nvarchar" MaxLength="20" />
+          <Property Name="User_Recommendation" Type="nvarchar" MaxLength="250" />
+          <Property Name="EJID" Type="bigint" />
+          <Property Name="Maker_Input" Type="nvarchar" MaxLength="20" />
+          <Property Name="Checker_Input" Type="nvarchar" MaxLength="20" />
+          <Property Name="BotIdWC" Type="int" />
+          <Property Name="BotWCProcess_StartTime" Type="datetime" />
+          <Property Name="BotWCProcess_EndTime" Type="datetime" />
+          <Property Name="BotWC_Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Final_Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="SolvedBy" Type="nvarchar" MaxLength="20" />
+          <Property Name="MakerUserId" Type="int" />
+          <Property Name="MakerProcess_StartTime" Type="datetime" />
+          <Property Name="MakerProcess_EndTime" Type="datetime" />
+          <Property Name="CheckerUserId" Type="int" />
+          <Property Name="CheckerProcess_StartTime" Type="datetime" />
+          <Property Name="CheckerProcess_EndTime" Type="datetime" />
+          <Property Name="MakerComment" Type="nvarchar" MaxLength="500" />
+          <Property Name="CheckerComment" Type="nvarchar" MaxLength="500" />
+          <Property Name="MakerHold_Time" Type="datetime" />
+          <Property Name="MakerComment_Hold" Type="nvarchar" MaxLength="500" />
+          <Property Name="CheckerHold_Time" Type="datetime" />
+          <Property Name="CheckerComment_Hold" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_EJData">
+          <Key>
+            <PropertyRef Name="EJID" />
+          </Key>
+          <Property Name="EJID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecordTS" Type="datetime" />
+          <Property Name="TerminalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeviceId" Type="nvarchar" MaxLength="20" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="Error_Code" Type="nvarchar" MaxLength="30" />
+          <Property Name="Currency_Code" Type="nvarchar" MaxLength="5" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="20" />
+          <Property Name="Counterfeit_Amount" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cash_Retracted_Amount" Type="nvarchar" MaxLength="20" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="100" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="BotIdEntry" Type="int" />
+          <Property Name="BotIdProcess" Type="int" />
+          <Property Name="BotProcess_StartTime" Type="datetime" />
+          <Property Name="BotProcess_EndTime" Type="datetime" />
+          <Property Name="Bot_Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Bot_Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="User_Action" Type="nvarchar" MaxLength="20" />
+          <Property Name="User_Recommendation" Type="nvarchar" MaxLength="250" />
+          <Property Name="DisputeID" Type="bigint" />
+          <Property Name="Maker_Input" Type="nvarchar" MaxLength="20" />
+          <Property Name="Checker_Input" Type="nvarchar" MaxLength="20" />
+          <Property Name="Final_Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="SolvedBy" Type="nvarchar" MaxLength="20" />
+          <Property Name="MakerUserId" Type="int" />
+          <Property Name="MakerProcess_StartTime" Type="datetime" />
+          <Property Name="MakerProcess_EndTime" Type="datetime" />
+          <Property Name="CheckerUserId" Type="int" />
+          <Property Name="CheckerProcess_StartTime" Type="datetime" />
+          <Property Name="CheckerProcess_EndTime" Type="datetime" />
+          <Property Name="MakerComment" Type="nvarchar" MaxLength="500" />
+          <Property Name="CheckerComment" Type="nvarchar" MaxLength="500" />
+          <Property Name="MakerHold_Time" Type="datetime" />
+          <Property Name="MakerComment_Hold" Type="nvarchar" MaxLength="500" />
+          <Property Name="CheckerHold_Time" Type="datetime" />
+          <Property Name="CheckerComment_Hold" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_EJLogsHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeviceId" Type="nvarchar" MaxLength="20" />
+          <Property Name="Transaction_TS" Type="datetime" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="100" />
+          <Property Name="TotalAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CountTotalTrans" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalApproveAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CountApproveTrans" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalErroneousAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CountErroneousTrans" Type="nvarchar" MaxLength="50" />
+          <Property Name="BalancingAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="BotId" Type="int" />
+          <Property Name="BotEntry_TS" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_GLAccountList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TerminalType" Type="nvarchar" MaxLength="10" />
+          <Property Name="GLNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="EntryBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_GLAmountHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GLNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="TerminalID" Type="nvarchar" MaxLength="16" />
+          <Property Name="TerminalType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Transaction_TS" Type="datetime" />
+          <Property Name="TotalApproveAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CountApproveTrans" Type="nvarchar" MaxLength="10" />
+          <Property Name="BotId" Type="int" />
+          <Property Name="BotEntry_TS" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_MasterBINList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
+          <Property Name="BIN" Type="nvarchar" MaxLength="10" />
+          <Property Name="SUBBIN" Type="nvarchar" MaxLength="10" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="EntryBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MasterDeviceList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeviceId" Type="nvarchar" MaxLength="20" />
+          <Property Name="Make" Type="nvarchar" MaxLength="10" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModelNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="TerminalType" Type="nvarchar" MaxLength="10" />
+          <Property Name="GLNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeviceLocation" Type="nvarchar" MaxLength="255" />
+          <Property Name="Custodian" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustodianAlertEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustodianAlertMobile" Type="nvarchar" MaxLength="200" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="EntryBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MasterErrorCode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make" Type="nvarchar" MaxLength="10" />
+          <Property Name="Machine_Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Error_Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Error_Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="EntryBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="GetDetailUserWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="input_type" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDSP_GET_ErrorCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UDSP_GET_GLDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UDSP_GET_TERMINALLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UDSP_Insert_EJData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Param_countv" Type="int" Mode="In" />
+          <Parameter Name="Param_AccountNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_CardNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Amount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TransactionDate" Type="datetime" Mode="In" />
+          <Parameter Name="Param_TerminalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_DeviceId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_ErrorCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Currency_Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Counterfeit_Amount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Cash_Retracted_Amount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TransactionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_EntryTime" Type="datetime" Mode="In" />
+          <Parameter Name="Param_BotIdEntry" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDSP_INSERT_EJLogsHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Param_TerminalID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_DeviceId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Transaction_TS" Type="datetime" Mode="In" />
+          <Parameter Name="Param_TransactionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_BotId" Type="int" Mode="In" />
+          <Parameter Name="Param_BotEntry_TS" Type="datetime" Mode="In" />
+          <Parameter Name="Param_TotalAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_CountTotalTrans" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TotalApproveAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_CountApproveTrans" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TotalErroneousAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_CountErroneousTrans" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDSP_INSERT_GLAmountHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Param_GLNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TerminalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TerminalType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Transaction_TS" Type="datetime" Mode="In" />
+          <Parameter Name="Param_TotalApproveAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_CountApproveTrans" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_BotId" Type="int" Mode="In" />
+          <Parameter Name="BotEntry_TS" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDSP_SEARCH_TotalApproveAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Param_TerminalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_TerminalType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_Transaction_TS" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDSP_UPDATE_BalancingAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Param_TerminalID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_BalancingAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Param_BotEntry_TS" Type="datetime" Mode="In" />
+          <Parameter Name="Param_TransactionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Bank_MuscatModelStoreContainer">
+          <EntitySet Name="tbl_BotMaster" EntityType="Self.tbl_BotMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DisputeData" EntityType="Self.tbl_DisputeData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_EJData" EntityType="Self.tbl_EJData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_EJLogsHistory" EntityType="Self.tbl_EJLogsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GLAccountList" EntityType="Self.tbl_GLAccountList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GLAmountHistory" EntityType="Self.tbl_GLAmountHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MasterBINList" EntityType="Self.tbl_MasterBINList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MasterDeviceList" EntityType="Self.tbl_MasterDeviceList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MasterErrorCode" EntityType="Self.tbl_MasterErrorCode" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bank_MuscatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_BotMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DisputeData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeedbackId" Type="Int64" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RegMobileNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RegEmailId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CIF_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comment_Eng" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Incident_Date" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="BotIdEntry" Type="Int32" />
+          <Property Name="BotIdProcess" Type="Int32" />
+          <Property Name="BotProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="BotProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Bot_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Bot_Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="User_Action" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="User_Recommendation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EJID" Type="Int64" />
+          <Property Name="Maker_Input" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Checker_Input" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BotIdWC" Type="Int32" />
+          <Property Name="BotWCProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="BotWCProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="BotWC_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Final_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SolvedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MakerUserId" Type="Int32" />
+          <Property Name="MakerProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="MakerProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckerUserId" Type="Int32" />
+          <Property Name="CheckerProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckerProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="MakerComment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CheckerComment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MakerHold_Time" Type="DateTime" Precision="3" />
+          <Property Name="MakerComment_Hold" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CheckerHold_Time" Type="DateTime" Precision="3" />
+          <Property Name="CheckerComment_Hold" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_EJData">
+          <Key>
+            <PropertyRef Name="EJID" />
+          </Key>
+          <Property Name="EJID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordTS" Type="DateTime" Precision="3" />
+          <Property Name="TerminalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Error_Code" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Currency_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Counterfeit_Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cash_Retracted_Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="BotIdEntry" Type="Int32" />
+          <Property Name="BotIdProcess" Type="Int32" />
+          <Property Name="BotProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="BotProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Bot_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Bot_Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="User_Action" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="User_Recommendation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DisputeID" Type="Int64" />
+          <Property Name="Maker_Input" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Checker_Input" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Final_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SolvedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MakerUserId" Type="Int32" />
+          <Property Name="MakerProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="MakerProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckerUserId" Type="Int32" />
+          <Property Name="CheckerProcess_StartTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckerProcess_EndTime" Type="DateTime" Precision="3" />
+          <Property Name="MakerComment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CheckerComment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MakerHold_Time" Type="DateTime" Precision="3" />
+          <Property Name="MakerComment_Hold" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CheckerHold_Time" Type="DateTime" Precision="3" />
+          <Property Name="CheckerComment_Hold" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_EJLogsHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Transaction_TS" Type="DateTime" Precision="3" />
+          <Property Name="TransactionType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountTotalTrans" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalApproveAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountApproveTrans" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalErroneousAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountErroneousTrans" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BalancingAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BotId" Type="Int32" />
+          <Property Name="BotEntry_TS" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_GLAccountList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TerminalType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GLNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_GLAmountHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GLNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TerminalID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TerminalType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Transaction_TS" Type="DateTime" Precision="3" />
+          <Property Name="TotalApproveAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountApproveTrans" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BotId" Type="Int32" />
+          <Property Name="BotEntry_TS" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_MasterBINList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BIN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SUBBIN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MasterDeviceList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Make" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModelNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TerminalType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GLNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Custodian" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustodianAlertEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustodianAlertMobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MasterErrorCode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Machine_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Error_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Error_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EntitiesList" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_BotMaster" EntityType="Self.tbl_BotMaster" />
+          <EntitySet Name="tbl_DisputeData" EntityType="Self.tbl_DisputeData" />
+          <EntitySet Name="tbl_EJData" EntityType="Self.tbl_EJData" />
+          <EntitySet Name="tbl_EJLogsHistory" EntityType="Self.tbl_EJLogsHistory" />
+          <EntitySet Name="tbl_GLAccountList" EntityType="Self.tbl_GLAccountList" />
+          <EntitySet Name="tbl_GLAmountHistory" EntityType="Self.tbl_GLAmountHistory" />
+          <EntitySet Name="tbl_MasterBINList" EntityType="Self.tbl_MasterBINList" />
+          <EntitySet Name="tbl_MasterDeviceList" EntityType="Self.tbl_MasterDeviceList" />
+          <EntitySet Name="tbl_MasterErrorCode" EntityType="Self.tbl_MasterErrorCode" />
+          <FunctionImport Name="GetDetailUserWise" ReturnType="Collection(Bank_MuscatModel.GetDetailUserWise_Result)">
+          <Parameter Name="input_type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDSP_GET_ErrorCode" ReturnType="Collection(String)" />
+          <FunctionImport Name="UDSP_GET_GLDETAILS" ReturnType="Collection(Bank_MuscatModel.UDSP_GET_GLDETAILS_Result)" />
+          <FunctionImport Name="UDSP_GET_TERMINALLIST" ReturnType="Collection(Bank_MuscatModel.UDSP_GET_TERMINALLIST_Result)" />
+          <FunctionImport Name="UDSP_Insert_EJData" ReturnType="Collection(Int32)">
+            <Parameter Name="Param_countv" Mode="In" Type="Int32" />
+            <Parameter Name="Param_AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="Param_CardNumber" Mode="In" Type="String" />
+            <Parameter Name="Param_Amount" Mode="In" Type="String" />
+            <Parameter Name="Param_TransactionDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_TerminalId" Mode="In" Type="String" />
+            <Parameter Name="Param_DeviceId" Mode="In" Type="String" />
+            <Parameter Name="Param_ErrorCode" Mode="In" Type="String" />
+            <Parameter Name="Param_Currency_Code" Mode="In" Type="String" />
+            <Parameter Name="Param_Counterfeit_Amount" Mode="In" Type="String" />
+            <Parameter Name="Param_Cash_Retracted_Amount" Mode="In" Type="String" />
+            <Parameter Name="Param_TransactionType" Mode="In" Type="String" />
+            <Parameter Name="Param_EntryTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_BotIdEntry" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDSP_INSERT_EJLogsHistory">
+            <Parameter Name="Param_TerminalID" Mode="In" Type="String" />
+            <Parameter Name="Param_DeviceId" Mode="In" Type="String" />
+            <Parameter Name="Param_Transaction_TS" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_TransactionType" Mode="In" Type="String" />
+            <Parameter Name="Param_BotId" Mode="In" Type="Int32" />
+            <Parameter Name="Param_BotEntry_TS" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_TotalAmount" Mode="In" Type="String" />
+            <Parameter Name="Param_CountTotalTrans" Mode="In" Type="String" />
+            <Parameter Name="Param_TotalApproveAmount" Mode="In" Type="String" />
+            <Parameter Name="Param_CountApproveTrans" Mode="In" Type="String" />
+            <Parameter Name="Param_TotalErroneousAmount" Mode="In" Type="String" />
+            <Parameter Name="Param_CountErroneousTrans" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDSP_INSERT_GLAmountHistory">
+            <Parameter Name="Param_GLNumber" Mode="In" Type="String" />
+            <Parameter Name="Param_TerminalId" Mode="In" Type="String" />
+            <Parameter Name="Param_TerminalType" Mode="In" Type="String" />
+            <Parameter Name="Param_Transaction_TS" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_TotalApproveAmount" Mode="In" Type="String" />
+            <Parameter Name="Param_CountApproveTrans" Mode="In" Type="String" />
+            <Parameter Name="Param_BotId" Mode="In" Type="Int32" />
+            <Parameter Name="BotEntry_TS" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDSP_SEARCH_TotalApproveAmount" ReturnType="Collection(String)">
+            <Parameter Name="Param_TerminalId" Mode="In" Type="String" />
+            <Parameter Name="Param_TerminalType" Mode="In" Type="String" />
+            <Parameter Name="Param_Transaction_TS" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDSP_UPDATE_BalancingAmount">
+            <Parameter Name="Param_TerminalID" Mode="In" Type="String" />
+            <Parameter Name="Param_BalancingAmount" Mode="In" Type="String" />
+            <Parameter Name="Param_BotEntry_TS" Mode="In" Type="DateTime" />
+            <Parameter Name="Param_TransactionType" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetDetailUserWise_Result">
+          <Property Type="String" Name="TerminalID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Amount" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="RecordTS" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BotProcess_StartTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BotProcess_EndTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Bot_Status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Bot_Remarks" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="User_Action" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="User_Recommendation" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Checker_Input" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Final_Status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SolvedBy" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="UDSP_GET_GLDETAILS_Result">
+          <Property Type="String" Name="GLNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TerminalID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TerminalType" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="UDSP_GET_TERMINALLIST_Result">
+          <Property Type="String" Name="TerminalID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DeviceId" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Make" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TerminalType" Nullable="true" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bank_MuscatModelStoreContainer" CdmEntityContainer="EntitiesList">
+          <EntitySetMapping Name="tbl_BotMaster">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_BotMaster">
+              <MappingFragment StoreEntitySet="tbl_BotMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DisputeData">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_DisputeData">
+              <MappingFragment StoreEntitySet="tbl_DisputeData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="RegMobileNumber" ColumnName="RegMobileNumber" />
+                <ScalarProperty Name="RegEmailId" ColumnName="RegEmailId" />
+                <ScalarProperty Name="CIF_Number" ColumnName="CIF_Number" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="Comment_Eng" ColumnName="Comment_Eng" />
+                <ScalarProperty Name="Incident_Date" ColumnName="Incident_Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Device_Number" ColumnName="Device_Number" />
+                <ScalarProperty Name="Device_Type" ColumnName="Device_Type" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="BotIdEntry" ColumnName="BotIdEntry" />
+                <ScalarProperty Name="BotIdProcess" ColumnName="BotIdProcess" />
+                <ScalarProperty Name="BotProcess_StartTime" ColumnName="BotProcess_StartTime" />
+                <ScalarProperty Name="BotProcess_EndTime" ColumnName="BotProcess_EndTime" />
+                <ScalarProperty Name="Bot_Status" ColumnName="Bot_Status" />
+                <ScalarProperty Name="Bot_Remarks" ColumnName="Bot_Remarks" />
+                <ScalarProperty Name="User_Action" ColumnName="User_Action" />
+                <ScalarProperty Name="User_Recommendation" ColumnName="User_Recommendation" />
+                <ScalarProperty Name="EJID" ColumnName="EJID" />
+                <ScalarProperty Name="Maker_Input" ColumnName="Maker_Input" />
+                <ScalarProperty Name="Checker_Input" ColumnName="Checker_Input" />
+                <ScalarProperty Name="BotIdWC" ColumnName="BotIdWC" />
+                <ScalarProperty Name="BotWCProcess_StartTime" ColumnName="BotWCProcess_StartTime" />
+                <ScalarProperty Name="BotWCProcess_EndTime" ColumnName="BotWCProcess_EndTime" />
+                <ScalarProperty Name="BotWC_Status" ColumnName="BotWC_Status" />
+                <ScalarProperty Name="Final_Status" ColumnName="Final_Status" />
+                <ScalarProperty Name="SolvedBy" ColumnName="SolvedBy" />
+                <ScalarProperty Name="MakerUserId" ColumnName="MakerUserId" />
+                <ScalarProperty Name="MakerProcess_StartTime" ColumnName="MakerProcess_StartTime" />
+                <ScalarProperty Name="MakerProcess_EndTime" ColumnName="MakerProcess_EndTime" />
+                <ScalarProperty Name="CheckerUserId" ColumnName="CheckerUserId" />
+                <ScalarProperty Name="CheckerProcess_StartTime" ColumnName="CheckerProcess_StartTime" />
+                <ScalarProperty Name="CheckerProcess_EndTime" ColumnName="CheckerProcess_EndTime" />
+                <ScalarProperty Name="MakerComment" ColumnName="MakerComment" />
+                <ScalarProperty Name="CheckerComment" ColumnName="CheckerComment" />
+                <ScalarProperty Name="MakerHold_Time" ColumnName="MakerHold_Time" />
+                <ScalarProperty Name="MakerComment_Hold" ColumnName="MakerComment_Hold" />
+                <ScalarProperty Name="CheckerHold_Time" ColumnName="CheckerHold_Time" />
+                <ScalarProperty Name="CheckerComment_Hold" ColumnName="CheckerComment_Hold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_EJData">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_EJData">
+              <MappingFragment StoreEntitySet="tbl_EJData">
+                <ScalarProperty Name="EJID" ColumnName="EJID" />
+                <ScalarProperty Name="RecordTS" ColumnName="RecordTS" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error_Code" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency_Code" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Counterfeit_Amount" ColumnName="Counterfeit_Amount" />
+                <ScalarProperty Name="Cash_Retracted_Amount" ColumnName="Cash_Retracted_Amount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="BotIdEntry" ColumnName="BotIdEntry" />
+                <ScalarProperty Name="BotIdProcess" ColumnName="BotIdProcess" />
+                <ScalarProperty Name="BotProcess_StartTime" ColumnName="BotProcess_StartTime" />
+                <ScalarProperty Name="BotProcess_EndTime" ColumnName="BotProcess_EndTime" />
+                <ScalarProperty Name="Bot_Status" ColumnName="Bot_Status" />
+                <ScalarProperty Name="Bot_Remarks" ColumnName="Bot_Remarks" />
+                <ScalarProperty Name="User_Action" ColumnName="User_Action" />
+                <ScalarProperty Name="User_Recommendation" ColumnName="User_Recommendation" />
+                <ScalarProperty Name="DisputeID" ColumnName="DisputeID" />
+                <ScalarProperty Name="Maker_Input" ColumnName="Maker_Input" />
+                <ScalarProperty Name="Checker_Input" ColumnName="Checker_Input" />
+                <ScalarProperty Name="Final_Status" ColumnName="Final_Status" />
+                <ScalarProperty Name="SolvedBy" ColumnName="SolvedBy" />
+                <ScalarProperty Name="MakerUserId" ColumnName="MakerUserId" />
+                <ScalarProperty Name="MakerProcess_StartTime" ColumnName="MakerProcess_StartTime" />
+                <ScalarProperty Name="MakerProcess_EndTime" ColumnName="MakerProcess_EndTime" />
+                <ScalarProperty Name="CheckerUserId" ColumnName="CheckerUserId" />
+                <ScalarProperty Name="CheckerProcess_StartTime" ColumnName="CheckerProcess_StartTime" />
+                <ScalarProperty Name="CheckerProcess_EndTime" ColumnName="CheckerProcess_EndTime" />
+                <ScalarProperty Name="MakerComment" ColumnName="MakerComment" />
+                <ScalarProperty Name="CheckerComment" ColumnName="CheckerComment" />
+                <ScalarProperty Name="MakerHold_Time" ColumnName="MakerHold_Time" />
+                <ScalarProperty Name="MakerComment_Hold" ColumnName="MakerComment_Hold" />
+                <ScalarProperty Name="CheckerHold_Time" ColumnName="CheckerHold_Time" />
+                <ScalarProperty Name="CheckerComment_Hold" ColumnName="CheckerComment_Hold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_EJLogsHistory">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_EJLogsHistory">
+              <MappingFragment StoreEntitySet="tbl_EJLogsHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="Transaction_TS" ColumnName="Transaction_TS" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="CountTotalTrans" ColumnName="CountTotalTrans" />
+                <ScalarProperty Name="TotalApproveAmount" ColumnName="TotalApproveAmount" />
+                <ScalarProperty Name="CountApproveTrans" ColumnName="CountApproveTrans" />
+                <ScalarProperty Name="TotalErroneousAmount" ColumnName="TotalErroneousAmount" />
+                <ScalarProperty Name="CountErroneousTrans" ColumnName="CountErroneousTrans" />
+                <ScalarProperty Name="BalancingAmount" ColumnName="BalancingAmount" />
+                <ScalarProperty Name="BotId" ColumnName="BotId" />
+                <ScalarProperty Name="BotEntry_TS" ColumnName="BotEntry_TS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GLAccountList">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_GLAccountList">
+              <MappingFragment StoreEntitySet="tbl_GLAccountList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+                <ScalarProperty Name="GLNumber" ColumnName="GLNumber" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GLAmountHistory">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_GLAmountHistory">
+              <MappingFragment StoreEntitySet="tbl_GLAmountHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GLNumber" ColumnName="GLNumber" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+                <ScalarProperty Name="Transaction_TS" ColumnName="Transaction_TS" />
+                <ScalarProperty Name="TotalApproveAmount" ColumnName="TotalApproveAmount" />
+                <ScalarProperty Name="CountApproveTrans" ColumnName="CountApproveTrans" />
+                <ScalarProperty Name="BotId" ColumnName="BotId" />
+                <ScalarProperty Name="BotEntry_TS" ColumnName="BotEntry_TS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MasterBINList">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_MasterBINList">
+              <MappingFragment StoreEntitySet="tbl_MasterBINList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BIN" ColumnName="BIN" />
+                <ScalarProperty Name="SUBBIN" ColumnName="SUBBIN" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MasterDeviceList">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_MasterDeviceList">
+              <MappingFragment StoreEntitySet="tbl_MasterDeviceList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+                <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+                <ScalarProperty Name="GLNumber" ColumnName="GLNumber" />
+                <ScalarProperty Name="DeviceLocation" ColumnName="DeviceLocation" />
+                <ScalarProperty Name="Custodian" ColumnName="Custodian" />
+                <ScalarProperty Name="CustodianAlertEmail" ColumnName="CustodianAlertEmail" />
+                <ScalarProperty Name="CustodianAlertMobile" ColumnName="CustodianAlertMobile" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MasterErrorCode">
+            <EntityTypeMapping TypeName="Bank_MuscatModel.tbl_MasterErrorCode">
+              <MappingFragment StoreEntitySet="tbl_MasterErrorCode">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Machine_Type" ColumnName="Machine_Type" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error_Code" />
+                <ScalarProperty Name="Error_Description" ColumnName="Error_Description" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDetailUserWise" FunctionName="Bank_MuscatModel.Store.GetDetailUserWise">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Bank_MuscatModel.GetDetailUserWise_Result">
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error_Code" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RecordTS" ColumnName="RecordTS" />
+                <ScalarProperty Name="BotProcess_StartTime" ColumnName="BotProcess_StartTime" />
+                <ScalarProperty Name="BotProcess_EndTime" ColumnName="BotProcess_EndTime" />
+                <ScalarProperty Name="Bot_Status" ColumnName="Bot_Status" />
+                <ScalarProperty Name="Bot_Remarks" ColumnName="Bot_Remarks" />
+                <ScalarProperty Name="User_Action" ColumnName="User_Action" />
+                <ScalarProperty Name="User_Recommendation" ColumnName="User_Recommendation" />
+                <ScalarProperty Name="Checker_Input" ColumnName="Checker_Input" />
+                <ScalarProperty Name="Final_Status" ColumnName="Final_Status" />
+                <ScalarProperty Name="SolvedBy" ColumnName="SolvedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDSP_GET_ErrorCode" FunctionName="Bank_MuscatModel.Store.UDSP_GET_ErrorCode" />
+          <FunctionImportMapping FunctionImportName="UDSP_GET_GLDETAILS" FunctionName="Bank_MuscatModel.Store.UDSP_GET_GLDETAILS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Bank_MuscatModel.UDSP_GET_GLDETAILS_Result">
+                <ScalarProperty Name="GLNumber" ColumnName="GLNumber" />
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDSP_GET_TERMINALLIST" FunctionName="Bank_MuscatModel.Store.UDSP_GET_TERMINALLIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Bank_MuscatModel.UDSP_GET_TERMINALLIST_Result">
+                <ScalarProperty Name="TerminalID" ColumnName="TerminalID" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDSP_Insert_EJData" FunctionName="Bank_MuscatModel.Store.UDSP_Insert_EJData" />
+          <FunctionImportMapping FunctionImportName="UDSP_INSERT_EJLogsHistory" FunctionName="Bank_MuscatModel.Store.UDSP_INSERT_EJLogsHistory" />
+          <FunctionImportMapping FunctionImportName="UDSP_INSERT_GLAmountHistory" FunctionName="Bank_MuscatModel.Store.UDSP_INSERT_GLAmountHistory" />
+          <FunctionImportMapping FunctionImportName="UDSP_SEARCH_TotalApproveAmount" FunctionName="Bank_MuscatModel.Store.UDSP_SEARCH_TotalApproveAmount" />
+          <FunctionImportMapping FunctionImportName="UDSP_UPDATE_BalancingAmount" FunctionName="Bank_MuscatModel.Store.UDSP_UPDATE_BalancingAmount" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

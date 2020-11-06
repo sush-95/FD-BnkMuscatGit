@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1F04D016-AC56-40EE-AEA5-BD47D1FB9F88}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BankMuscat</RootNamespace>
+    <AssemblyName>BankMuscat</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr3.Runtime.3.5.2-rc1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Data\BankEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\BankEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\BankEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\GetDetailUserWise_Result.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_BotMaster.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_DisputeData.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_EJData.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_EJLogsHistory.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_GLAccountList.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_GLAmountHistory.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_MasterBINList.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_MasterDeviceList.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\tbl_MasterErrorCode.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UDSP_GET_GLDETAILS_Result.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UDSP_GET_TERMINALLIST_Result.cs">
+      <DependentUpon>BankEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="MaxComplaintCustomer.cs" />
+    <Compile Include="MaxDisputedMachine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReactiveReportsType.cs" />
+    <Compile Include="ReactiveUserDetails.cs" />
+    <Compile Include="TicketMIS.cs" />
+    <Compile Include="UserDetails.cs" />
+    <Compile Include="UserList.cs" />
+    <Compile Include="UserTransactionData.cs" />
+    <Compile Include="ViewTransaction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="App_Data\BankEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BankEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="App_Data\BankEntities.edmx.diagram">
+      <DependentUpon>BankEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\BankEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BankEntities.Context.cs</LastGenOutput>
+      <DependentUpon>BankEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Data\BankEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BankEntities.edmx</DependentUpon>
+      <LastGenOutput>BankEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
