@@ -21,8 +21,10 @@ namespace BankDashboard.ModelFd
         public virtual DbSet<MailConfig> MailConfigs { get; set; }
         public virtual DbSet<SettingAndConstant> SettingAndConstants { get; set; }
         public virtual DbSet<SMSConfig> SMSConfigs { get; set; }
+        public virtual DbSet<tbl_MachineInfo> tbl_MachineInfo { get; set; }
+        public virtual DbSet<Tbl_User_Detail> Tbl_User_Detail { get; set; }
         public virtual DbSet<TblTermLength> TblTermLengths { get; set; }
-       
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

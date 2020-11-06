@@ -6,14 +6,15 @@ namespace BankDashboard.ModelFd
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class BOT_Status
+    public partial class tbl_MachineInfo
     {
         public long ID { get; set; }
 
-        public DateTime? StartTime { get; set; }
+        [Required]
+        public string MachineName { get; set; }
 
-        public DateTime? EndTime { get; set; }
+        public bool IsActive { get; set; }
 
-        public string RunningStatus { get; set; }
+        public DateTime CreatedTs { get; set; }
     }
 }

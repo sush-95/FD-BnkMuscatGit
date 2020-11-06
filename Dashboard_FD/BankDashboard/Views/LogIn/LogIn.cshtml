@@ -61,13 +61,13 @@
         <div class="container-login100" style="background-image: url('/Login_v3/images/loginback.jpg');">
             <div class="wrap-login100" style="height:554px">
                 <form class="login100-form validate-form" method="post" action="/app/LogIn/LogIn">
-                    <span class="login100-form-logo">
-                        <img src="~/Login_v3/images/BankMuscat.jpg" class="login100-form-logo" />
+                    <span class="login100-form-logo" style="background-color:#a09f9dc7">
+                        <img src="~/Images/banklogo.jpg" class="login100-form-logo" />
                     </span>
-                    <i>
+                    <i style="color: #504848;font-weight: bold;">
                         Robotic Process Automation                        
                     </i>
-                    <h3>FIXED DEPOSIT TEAM</h3>
+                    <h3 style="color: #4e3e38fa;font-weight: bold;font-family: math;">FIXED DEPOSIT TEAM</h3>
                    
                     <br />
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
@@ -85,12 +85,10 @@
                     @*PasswordEncrypt(this)*@
 
                     <div class="container-login100-form-btn">
-                        @*<button class="login100-form-btn" type="submit" onclick="EncryptText();">
+                        <button class="login100-form-btn" type="submit" onclick="EncryptText();">
                             Login
-                        </button>*@
-                        <a class="login100-form-btn" href="/app/FD/OverView">
-                            Login
-                        </a>
+                        </button>
+                        
 
                     </div>
 
@@ -98,7 +96,7 @@
                         <b class="txt1">
                             @if (TempData["invalidmsg"] != null)
                             {
-                                <span style="color:mintcream; position: relative;top: -85px;">@TempData["invalidmsg"]</span>
+                                <span style="color:red; position: relative;top: -85px;">@TempData["invalidmsg"]</span>
                             }
                             @*<span style="color:;position: relative;top: -85px;">Invalid Message Invalid Message</span>*@
                         </b>

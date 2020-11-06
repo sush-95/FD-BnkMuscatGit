@@ -106,13 +106,25 @@
                                     {
                                         <option value="@filterobj.TermLength" selected hidden>@filterobj.TermLength</option>
                                     }
-                                    @foreach (string a in props.ListofTermLength)
+                                    @if (props.ListofTermLength != null)
                                     {
-                                        <option value="@a">@a</option>
+                                        foreach (string a in props.ListofTermLength)
+                                        {
+                                            <option value="@a">@a</option>
+                                        }
                                     }
                                 </select>
                             </th>
-                            <th><input type="text" class="form-control invoice" name="RequestDate" autocomplete="off" /></th>
+                            <th>
+                                @if (filterobj == null)
+                                {
+                                    <input type="text" class="form-control invoice" name="RequestDate" autocomplete="off" />
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control invoice" value="@filterobj.RequestDate" name="RequestDate" autocomplete="off" />
+                                }
+                            </th>
                             <th>
                                 <select class="form-control" name="FDCreated">
                                     <option value="">select</option>
@@ -120,9 +132,12 @@
                                     {
                                         <option value="@filterobj.FDCreated" selected hidden>@filterobj.FDCreated</option>
                                     }
-                                    @foreach (string a in props.ListofFDCreated)
+                                    @if (props.ListofFDCreated != null)
                                     {
-                                        <option value="@a">@a</option>
+                                        foreach (string a in props.ListofFDCreated)
+                                        {
+                                            <option value="@a">@a</option>
+                                        }
                                     }
                                 </select>
                             </th>
@@ -133,9 +148,12 @@
                                     {
                                         <option value="@filterobj.MailSent" selected hidden>@filterobj.MailSent</option>
                                     }
-                                    @foreach (string a in props.ListOfMailsent)
+                                    @if (props.ListOfMailsent != null)
                                     {
-                                        <option value="@a">@a</option>
+                                        foreach (string a in props.ListOfMailsent)
+                                        {
+                                            <option value="@a">@a</option>
+                                        }
                                     }
                                 </select>
 
@@ -147,9 +165,12 @@
                                     {
                                         <option value="@filterobj.SMSSent" selected hidden>@filterobj.SMSSent</option>
                                     }
-                                    @foreach (string a in props.ListOfSMSSent)
+                                    @if (props.ListOfSMSSent != null)
                                     {
-                                        <option value="@a">@a</option>
+                                        foreach (string a in props.ListOfSMSSent)
+                                        {
+                                            <option value="@a">@a</option>
+                                        }
                                     }
                                 </select>
                             </th>
@@ -160,9 +181,12 @@
                                     {
                                         <option value="@filterobj.MarkedStatusInMB" selected hidden>@filterobj.MarkedStatusInMB</option>
                                     }
-                                    @foreach (string a in props.ListMarkedStatusInMB)
+                                    @if (props.ListMarkedStatusInMB != null)
                                     {
-                                        <option value="@a">@a</option>
+                                        foreach (string a in props.ListMarkedStatusInMB)
+                                        {
+                                            <option value="@a">@a</option>
+                                        }
                                     }
                                 </select>
                             </th>
@@ -191,22 +215,33 @@
                 <h5 style="color: #639292;font-family:inherit;">FD Request Detail</h5>
                 <a class="close" data-dismiss="modal"><span>x</span></a>
             </div>
-
             <div class="modal-body">
                 <table class="table-bordered table table-striped table-condensed " style="font-size:12px;text-align:center">
                     <tbody>
-                        <tr><th>Customer Number</th><td id="cuno"></td><th>Term Length</th><td id="TL"></td></tr>                       
+                        <tr><th>Customer Number</th><td id="cuno"></td><th>Term Length</th><td id="TL"></td></tr>
                         <tr><th>Profit Payment Frequency</th><td id="ppf"></td><th>Deposit Amount</th><td id="da"> </td></tr>
                         <tr><th>Request Date</th><td id="rdate"> </td><th>FD Created</th><td id="fdcr"></td></tr>
                         <tr><th>Mail Sent</th><td id="mail"></td><th>Marked Status In MB</th><td id="msib"></td></tr>
-                        <tr><th>SMS Sent</th><td id="sms"></td><th>Maturity Date</th><td id="mdate"></td></tr>                        
-                        <tr><th>FD Booking Date</th><td id="fdbookdate"></td><th>FD Account No</th><td id="fdaccno"></td></tr>                       
-                        <tr><th>Payment Method</th><td id="pmethod"></td><th>Status</th><td id="status"></td></tr>                       
+                        <tr><th>SMS Sent</th><td id="sms"></td><th>Maturity Date</th><td id="mdate"></td></tr>
+                        <tr><th>FD Booking Date</th><td id="fdbookdate"></td><th>FD Account No</th><td id="fdaccno"></td></tr>
+                        <tr><th>Payment Method</th><td id="pmethod"></td><th></th><td id="status"></td></tr>
                     </tbody>
+
                 </table>
+                <table class="able-bordered table table-striped table-condensed ">
+                    <tr>
+                        <th>SMS File</th>
+                        <td>
+                            <textarea class="form-control" id="dat">  </textarea>
+                        </td>
+                    </tr>
+                </table>
+
+
+
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal"  >Close</button>
+            <div class="modal-footer">              
+                <button class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
         </div>
@@ -246,7 +281,7 @@
                                 <td>@item.SMSSent</td>
                                 <td>@item.MarkedStatusInMB</td>
                                 <td>
-                                    <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalContactForm" onclick="getFdDetail(@Json.Encode(item))">View</a>
+                                    <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalContactForm" onclick="getFdDetail(@Json.Encode(item),@Json.Encode(BankDashboard.Common.FDHelper.getSmsInfo(item.ID)))">View</a>
                                 </td>
                             </tr>
                         }
@@ -259,7 +294,7 @@
 </div>
 
 <script>
-    function getFdDetail(data) {
+    function getFdDetail(data,FileInfo) {
         debugger;
         document.getElementById('cuno').innerText = data.CustomerNumber;
         document.getElementById('TL').innerText = data.TermLength;
@@ -269,11 +304,12 @@
         document.getElementById('fdcr').innerText = data.FDCreated;
         document.getElementById('mail').innerText = data.MailSent;
         document.getElementById('msib').innerText = data.MarkedStatusInMB;
-        document.getElementById('sms').innerText = data.SMSSent;      
+        document.getElementById('sms').innerText = data.SMSSent;
         document.getElementById('mdate').innerText = data.MaturityDate;
         document.getElementById('fdbookdate').innerText = data.FDBookingDate;
         document.getElementById('fdaccno').innerText = data.FDAccNo;
         document.getElementById('pmethod').innerText = data.PaymentMethod;
-        document.getElementById('status').innerText = data.Status;
+        //document.getElementById('status').innerText = data.RequestStatus;
+        document.getElementById('dat').innerText = FileInfo;
     }
 </script>

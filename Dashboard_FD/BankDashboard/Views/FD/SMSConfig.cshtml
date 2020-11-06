@@ -66,6 +66,7 @@
             <table id="example" class="table-bordered table table-striped table-condensed " style="text-align:center">
                 <thead style="background-color: #090c5d;color: white;">
                     <tr>
+                        <th>ID</th>
                         <th>Business Exception</th>
                         <th>Language</th>
                         <th style="width:558px">SMS Body</th>
@@ -77,12 +78,13 @@
                     {
                         foreach (var item in ViewBag.smsConfigList)
                         {
-                            <tr>
-                                <td>@item.BusinessException</td>
-                                <td>@item.Language</td>
-                                <td>@item.SMSBody</td>
-                                <td><button class="btn btn-sm btn-success" onclick="OnEditClick(@Json.Encode(item))" data-toggle="modal" data-target="#modalContactForm">Edit</button></td>
-                            </tr>
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.BusinessException</td>
+                        <td>@item.Language</td>
+                        <td>@item.SMSBody</td>
+                        <td><button class="btn btn-sm btn-success" onclick="OnEditClick(@Json.Encode(item))" data-toggle="modal" data-target="#modalContactForm">Edit</button></td>
+                    </tr>
                         }
                     }
                 </tbody>

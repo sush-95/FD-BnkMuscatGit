@@ -58,7 +58,7 @@ namespace BankDashboard
             }
 
         }
-        
+
         void Session_OnEnd(object sender, EventArgs e)
         {
             //WriteToLogFile.writeMessage("Session_End");
@@ -78,7 +78,7 @@ namespace BankDashboard
                 Request.Headers.Remove("Referer");
                 Request.Headers.Remove("Cookie");
                 Request.Headers.Remove("Host");
-                
+
             }
         }
 

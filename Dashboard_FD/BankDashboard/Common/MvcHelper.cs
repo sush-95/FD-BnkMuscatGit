@@ -26,7 +26,7 @@ namespace BankDashboard.Common
         //}
 
         //#region-------------------------------------------- UserProfilePage--------------------------------
-        
+
         //public static List<tbl_GroupRoleMappingMaster> GetGroupRoleMappingMasterList()
 
         //{
@@ -77,31 +77,18 @@ namespace BankDashboard.Common
         //    }
         //}
         //#endregion
-        
 
-        
 
-        
 
-        
 
-        
 
-        
-        //public static tbl_UserDetail GetUser(string uname, string pwd, ref string pages)
-        //{
-        //    using (BNKModel db = new BNKModel())
-        //    {
-        //        var obj = db.tbl_UserDetail.Where(x => x.AccountName.Equals(uname) && x.PWD.Equals(pwd)).FirstOrDefault();
-        //        if (obj != null)
-        //        {
-        //            pages = GetGroupPages(obj.UserGroup.Trim());
-        //        }
 
-        //        return obj;
-        //    }
 
-        //}
+
+
+
+
+       
         //public static string GetGroupPages(string group)
         //{
         //    using (BNKModel db = new BNKModel())
@@ -115,18 +102,18 @@ namespace BankDashboard.Common
         //        {
         //            return "";
         //        }
-               
+
         //    }
         //}
-        
 
-        
 
- 
 
-        
 
-        
+
+
+
+
+
 
         #region-------------------------DecryptUsing----------------------------
 

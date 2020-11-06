@@ -142,6 +142,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\ADManager.cs" />
     <Compile Include="Common\FDHelper.cs" />
     <Compile Include="Common\FDViewModelClass.cs" />
     <Compile Include="Common\MvcHelper.cs" />
@@ -160,6 +161,8 @@
     <Compile Include="ModelFd\SettingAndConstant.cs" />
     <Compile Include="ModelFd\SMSConfig.cs" />
     <Compile Include="ModelFd\TblTermLength.cs" />
+    <Compile Include="ModelFd\tbl_MachineInfo.cs" />
+    <Compile Include="ModelFd\Tbl_User_Detail.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -306,12 +309,20 @@
     <Content Include="ImagesScreens\WC_FeedBackId90002_1.jpg" />
     <Content Include="ImagesScreens\WC_FeedBackId90004_1.jpg" />
     <Content Include="ImagesScreens\WC_FeedBackId90004_2.jpg" />
+    <Content Include="Images\asset.png" />
+    <Content Include="Images\banklogo.jpg" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\center-logo.png" />
+    <Content Include="Images\dashboard.png" />
+    <Content Include="Images\email.png" />
     <Content Include="Images\exl.png" />
     <Content Include="Images\ham.png" />
     <Content Include="Images\logo-bank.jpg" />
     <Content Include="Images\Logout.png" />
+    <Content Include="Images\report.png" />
+    <Content Include="Images\robot.png" />
+    <Content Include="Images\sms.png" />
+    <Content Include="Images\term.png" />
     <Content Include="Images\user.png" />
     <Content Include="JavaScript\CryptoJS\crypto-js.js" />
     <Content Include="JavaScript\mdb\mdb.min.js" />
@@ -631,6 +642,7 @@
     <Content Include="Views\FD\SMSConfig.cshtml" />
     <Content Include="Views\FD\EmailConfig.cshtml" />
     <Content Include="Views\FD\TLConfig.cshtml" />
+    <Content Include="Views\FD\Asset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

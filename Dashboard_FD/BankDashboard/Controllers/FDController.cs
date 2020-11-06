@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace BankDashboard.Controllers
 {
     public class FDController : Controller
@@ -17,16 +18,18 @@ namespace BankDashboard.Controllers
             ViewBag.OverView = "active";
             try
             {
+                ViewBag.couning = getCountingFigures();
                 ViewBag.realtime = GetListofStatus(true);
                 ViewBag.historical = GetListofStatus(false);
             }
-            catch
-            {}
+            catch (Exception ex)
+            { throw ex; }
             return View();
         }
-        public List<long> GetListofStatus(bool isRealtime)
+        public FDViewModelClass.ChartInfo GetListofStatus(bool isRealtime)
         {
             DBFD db = new DBFD();
+            FDViewModelClass.ChartInfo chartobj = new FDViewModelClass.ChartInfo();
             List<FDRequest> fdList = db.FDRequests.ToList();
             List<long> list = new List<long>();
             if (isRealtime)
@@ -34,25 +37,51 @@ namespace BankDashboard.Controllers
                 FDRequest fdobj = db.FDRequests.OrderByDescending(x => x.BOTEntryDate).First();
                 DateTime todate = Convert.ToDateTime(fdobj.BOTEntryDate);
                 DateTime stdate = todate.AddHours(-24);
+                chartobj.YTD = todate.ToString("dd-MMM");
                 fdList = fdList.Where(x => x.BOTEntryDate <= todate && x.BOTEntryDate >= stdate).ToList();
                 list.Add(fdList.Where(x => x.FDCreated.Replace(" ", "").Equals("ValidFD-Created")).ToList().Count());
                 list.Add(fdList.Where(x => x.MailSent.Replace(" ", "").Equals("ValidFD-MailSent")).ToList().Count());
                 list.Add(fdList.Where(x => x.SMSSent.Replace(" ", "").Equals("ValidFD-SMSCreated")).ToList().Count());
                 list.Add(fdList.Where(x => x.MarkedStatusInMB.Replace(" ", "").Equals("ValidFD-StatusMarked")).ToList().Count());
                 list.Add(4);
+                chartobj.CartFigures = list;
             }
             else
             {
+                FDRequest fdobj = fdList.OrderByDescending(x => x.BOTEntryDate).LastOrDefault();
+                DateTime todate = Convert.ToDateTime(fdobj.BOTEntryDate);
+                chartobj.YTD = todate.ToString("dd-MMM");
                 list.Add(fdList.Where(x => x.FDCreated.Replace(" ", "").Equals("ValidFD-Created")).ToList().Count());
                 list.Add(fdList.Where(x => x.MailSent.Replace(" ", "").Equals("ValidFD-MailSent")).ToList().Count());
                 list.Add(fdList.Where(x => x.SMSSent.Replace(" ", "").Equals("ValidFD-SMSCreated")).ToList().Count());
                 list.Add(fdList.Where(x => x.MarkedStatusInMB.Replace(" ", "").Equals("ValidFD-StatusMarked")).ToList().Count());
                 list.Add(4);
+                chartobj.CartFigures = list;
             }
-            return list;
+            return chartobj;
         }
+        public FDViewModelClass.CountingInfo getCountingFigures()
+        {
+            FDViewModelClass.CountingInfo obj = new FDViewModelClass.CountingInfo();
+            DBFD db = new DBFD();
+            List<BOT_Status> botstats = db.BOT_Status.Where(x => x.EndTime != null).ToList();
+            List<FDRequest> Fdlist = db.FDRequests.ToList();
+            obj.Requested = Fdlist.Count().ToString();
+            obj.Processed = Fdlist.Where(x => x.FDCreated != null && x.MailSent != null && x.SMSSent != null && x.MarkedStatusInMB != null).ToList().Count().ToString();
+            long totalbothour = 0;
+            foreach (var item in botstats)
+            {
+                totalbothour += (Convert.ToDateTime(item.EndTime) - Convert.ToDateTime(item.StartTime)).Minutes;
+            }
+            long totalmanhour = Convert.ToInt64(obj.Processed) * 10;
+            obj.Manhoursaved = Convert.ToDecimal((totalmanhour - totalbothour) / 60).ToString();
+            obj.date = Convert.ToDateTime(Fdlist.Last().BOTEntryDate).ToString("dd-MMM");
+            obj.botstatus = db.BOT_Status.OrderByDescending(x => x.ID).First().RunningStatus;
+            return obj;
+        }
+
         #region---------------------------------Report-----------------------------------------------------
-        public ActionResult Report(FDViewModelClass.ReportView filter,string Apply)
+        public ActionResult Report(FDViewModelClass.ReportView filter, string Apply)
         {
             ViewBag.report = "active";
             try
@@ -67,13 +96,13 @@ namespace BankDashboard.Controllers
                     else
                     {
                         ViewBag.ReportList = db.FDRequests.ToList();
-                    }                    
+                    }
                     ViewBag.getPropertyList = FDHelper.getAllPropertyList();
 
                 }
             }
             catch
-            { }
+            { throw; }
             return View();
         }
         public ActionResult GetExcel(string hfilter)
@@ -91,18 +120,18 @@ namespace BankDashboard.Controllers
                 {
                     DBFD db = new DBFD();
                     list = db.FDRequests.ToList();
-                }   
+                }
                 FormattoExcel(list, "Report_" + DateTime.Now.ToString("ddMMyyyyHHmmss"));
-                TempData["Success"] = "Excel downloaded successfully..";
+               // TempData["Success"] = "Excel downloaded successfully..";
             }
             catch
             {
                 TempData["Error"] = "Something went wrong..!";
             }
-            return RedirectToAction("Report",new { filter=filterobj, Apply=""});
+            return RedirectToAction("Report", new { filter = filterobj, Apply = "" });
         }
 
-            void FormattoExcel(List<FDRequest> p, string sname)
+        void FormattoExcel(List<FDRequest> p, string sname)
         {
 
 
@@ -121,7 +150,7 @@ namespace BankDashboard.Controllers
             System.Web.HttpContext.Current.Response.Write("<BR><BR><BR>");
             System.Web.HttpContext.Current.Response.Write("<Table border='1' bgColor='#ffffff' " + "borderColor='#000000' cellSpacing='0' cellPadding='0' " +
               "style='font-size:10.0pt; font-family:Calibri; background:white;'> <TR>");
-         
+
 
             System.Web.HttpContext.Current.Response.Write("<Td>");
             System.Web.HttpContext.Current.Response.Write("<B>");
@@ -135,7 +164,7 @@ namespace BankDashboard.Controllers
             System.Web.HttpContext.Current.Response.Write("</B>");
             System.Web.HttpContext.Current.Response.Write("</Td>");
 
-        
+
 
             System.Web.HttpContext.Current.Response.Write("<Td>");
             System.Web.HttpContext.Current.Response.Write("<B>");
@@ -209,17 +238,17 @@ namespace BankDashboard.Controllers
             System.Web.HttpContext.Current.Response.Write("</B>");
             System.Web.HttpContext.Current.Response.Write("</Td>");
 
-            System.Web.HttpContext.Current.Response.Write("<Td>");
-            System.Web.HttpContext.Current.Response.Write("<B>");
-            System.Web.HttpContext.Current.Response.Write("Status");
-            System.Web.HttpContext.Current.Response.Write("</B>");
-            System.Web.HttpContext.Current.Response.Write("</Td>");
+            //System.Web.HttpContext.Current.Response.Write("<Td>");
+            //System.Web.HttpContext.Current.Response.Write("<B>");
+            //System.Web.HttpContext.Current.Response.Write("Status");
+            //System.Web.HttpContext.Current.Response.Write("</B>");
+            //System.Web.HttpContext.Current.Response.Write("</Td>");
 
-           
+
 
             foreach (FDRequest pdata in p)
             {
-                System.Web.HttpContext.Current.Response.Write("<TR>");                
+                System.Web.HttpContext.Current.Response.Write("<TR>");
 
                 System.Web.HttpContext.Current.Response.Write("<Td>");
 
@@ -233,7 +262,7 @@ namespace BankDashboard.Controllers
 
                 System.Web.HttpContext.Current.Response.Write("</Td>");
 
-              
+
 
                 System.Web.HttpContext.Current.Response.Write("<Td>");
 
@@ -308,12 +337,12 @@ namespace BankDashboard.Controllers
 
                 System.Web.HttpContext.Current.Response.Write("</Td>");
 
-                System.Web.HttpContext.Current.Response.Write("<Td>");
+                //System.Web.HttpContext.Current.Response.Write("<Td>");
 
-                System.Web.HttpContext.Current.Response.Write(pdata.Status);
+                //System.Web.HttpContext.Current.Response.Write(pdata.RequestStatus);
 
-                System.Web.HttpContext.Current.Response.Write("</Td>");
-              
+                //System.Web.HttpContext.Current.Response.Write("</Td>");
+
                 System.Web.HttpContext.Current.Response.Write("</TR>");
 
             }
@@ -335,8 +364,11 @@ namespace BankDashboard.Controllers
                 DBFD db = new DBFD();
                 ViewBag.RbConfigList = db.SettingAndConstants.Where(x => x.EditFlag == 1).ToList();
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                // TempData["Error"] = "Something went wrong..!" + ex.Message;
+                throw ex;
+            }
             return View();
         }
         [HttpPost]
@@ -355,9 +387,9 @@ namespace BankDashboard.Controllers
                     TempData["Success"] = "Data saved successfully.";
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                TempData["Error"] = "Something went wrong..!";
+                TempData["Error"] = "Something went wrong..!" + ex.Message;
             }
 
             return RedirectToAction("RobotConfig");
@@ -401,6 +433,8 @@ namespace BankDashboard.Controllers
             return RedirectToAction("SMSConfig");
         }
         #endregion--------------------------------------------------------------
+
+
         #region---------------------------Email Config--------------------------------------------
         public ActionResult EmailConfig()
         {
@@ -508,5 +542,22 @@ namespace BankDashboard.Controllers
             return RedirectToAction("TLConfig");
         }
         #endregion--------------------------------------------------------------
+
+        #region-------------------------------------Asset--------------------------------
+        public ActionResult Asset()
+        {
+            ViewBag.asset = "active";
+            try
+            {
+                DBFD db = new DBFD();
+                ViewBag.list = db.AssetsConfigs.ToList();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Something went wrong..!" + ex.Message;
+            }
+            return View();
+        }
+        #endregion--------------------------------------------------------------------------
     }
 }

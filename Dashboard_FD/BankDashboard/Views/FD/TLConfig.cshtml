@@ -13,9 +13,9 @@
         <div class="col-sm-4">
             <h4 style="color:#758484">Termlength Configuration</h4>
         </div>
-        <div class="col-sm-6"> </div>
-        <div class="col-sm-2">
-          <button data-toggle="modal" style="margin-left: 39%" data-target="#modalContactForm" class="btn btn-secondary">Create</button>
+        <div class="col-sm-4"> </div>
+        <div class="col-sm-4">
+          <button data-toggle="modal" style="margin-left: 39%" data-target="#modalContactForm" class="btn btn-secondary">Add New Product</button>
         </div>
     </div>
 </div>
@@ -29,28 +29,28 @@
                 <h5 style="color: #639292;font-family:inherit;">Edit Termlength Config</h5>
                 <a class="close" data-dismiss="modal"><span>x</span></a>
             </div>
-            <form action="@System.Web.Configuration.WebConfigurationManager.AppSettings["applicationname"].ToString().Trim()/FD/TLConfig" method="post">
+            <form action="@System.Web.Configuration.WebConfigurationManager.AppSettings["applicationname"].ToString().Trim()/FD/TLConfig" method="post" class="form-group">
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
                     <input type="hidden" value="0" id="Id" name="ID" />
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <b>Term Length:</b>
-                            <input type="text" class="form-control" id="TL" name="TermLength" />
+                            <input type="text" class="form-control" required id="TL" name="TermLength" />
                         </div>
                     </div>
                     <br />
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <b>Profit Payment Frequency:</b>
-                            <input type="text" class="form-control" id="PPF" name="ProfitPaymentFrequency" />
+                            <input type="text" class="form-control" required id="PPF" name="ProfitPaymentFrequency" />
                         </div>
                     </div>
                     <br />
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <b>Product Code:</b>
-                            <input type="text" class="form-control" id="PC" name="ProductCode" />                         
+                            <input type="text" class="form-control" required id="PC" name="ProductCode" />                         
                         </div>
                     </div>
                 </div>

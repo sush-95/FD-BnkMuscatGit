@@ -69,7 +69,14 @@
             <b style="color: #3c4e4e;font-size: 17px;">Bot Status</b>
         </div>
         <div class="col-sm-1">
-            <p class="botstat" style=" background-color: #d60f2af7;"></p>
+            @if (ViewBag.couning.botstatus.ToString().ToLower().Equals("yes"))
+            {
+                <p class="botstat" style=" background-color: #0fce1e;"></p>
+            }else
+            {
+                <p class="botstat" style=" background-color: #d60f2af7;"></p>
+            }
+            
         </div>
         <div class="col-sm-5"></div>
         <div class="col-sm-2">
@@ -85,37 +92,43 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-4 p-3">
             <div class="shadow card">
+
                 <div class="card-image-wrapper" style="text-align:center">
-                    <h1 class="Count">340</h1>
+                    <h1 class="Count">@ViewBag.couning.Requested</h1>
                 </div>
-                <div class="card-body" style="text-align:center">
-                    FD Requests till Date.
+                <div class="card-footer " style="text-align:center">
+                    <b style="color:#6d7979;font-size:16px"> FD Requested till Date.</b><br />
+                    <b style="color:#6d7979;font-size:12px">Showing data from @ViewBag.couning.date - till date</b>
                 </div>
             </div>
+
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-4 p-3">
             <div class="shadow card">
                 <div class="card-image-wrapper" style="text-align:center">
-                    <h1 class="Count">260</h1>
+                    <h1 class="Count">@ViewBag.couning.Processed</h1>
                 </div>
-                <div class="card-body" style="text-align:center">
-                    FD Processed till Date.
+                <div class="card-footer" style="text-align:center">
+                    <b style="color:#6d7979;font-size:16px">FD Processed till Date.</b><br />
+                    <b style="color:#6d7979;font-size:12px">Showing data from @ViewBag.couning.date - till date</b>
                 </div>
             </div>
         </div>
     </div>
     <br />
-    
+
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4 p-3">
             <div class="shadow card">
                 <div class="card-image-wrapper" style="text-align:center">
-                    <h1 class="Count">130</h1>
+                    <h1 class="Count">@ViewBag.couning.Manhoursaved</h1>
+                    <b style="color:#4e907a;">Hrs</b>
                 </div>
-                <div class="card-body" style="text-align:center">
-                    Man hour saved till date. And Counting...
+                <div class="card-footer" style="text-align:center">
+                    <b style="color:#6d7979;font-size:16px">Man hour saved till date. And Counting...</b><br />
+                    <b style="color:#6d7979;font-size:12px">Showing data from @ViewBag.couning.date - till date</b>
                 </div>
             </div>
         </div>
@@ -130,35 +143,42 @@
         <div class="col-sm-9"></div>
         <div class="col-sm-3">
             <ul class="buttoList">
-                <li id="li1" class="active1" style="width:50%" onclick="Realtime(true,@Json.Encode(ViewBag.realtime))">Real Time</li>
-                <li id="li2" class="" onclick="Realtime(false,@Json.Encode(ViewBag.historical))" style="width:50%">Historical</li>
+                <li id="li1" class="active1" style="width:50%" onclick="Realtime(true,@Json.Encode(ViewBag.realtime.CartFigures))">Real Time</li>
+                <li id="li2" class="" onclick="Realtime(false,@Json.Encode(ViewBag.historical.CartFigures))" style="width:50%">Historical</li>
             </ul>
         </div>
     </div><br />
-          <div class="row">
-              <div class="col-sm-3"></div>
-              <div class="col-sm-7" id="real" style="display:none">
-                  <div class="shadow card">
-                      <div class="card-image-wrapper" style="text-align:center">
-                          <canvas id="pieChart"></canvas>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-7" id="his" style="display:none">
-                  <div class="shadow card">
-                      <div class="card-image-wrapper" style="text-align:center">
-                          <canvas id="pieChart1"></canvas>
-                      </div>
-                  </div>
-              </div>
-          </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5" id="real" style="display:none">
+            <div class="shadow card">
+                <div class="card-image-wrapper" style="text-align:center">
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <b style="color:#6d7979;font-size:12px">Showing data from @ViewBag.realtime.YTD - till date</b>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5" id="his" style="display:none">
+            <div class="shadow card">
+                <div class="card-image-wrapper" style="text-align:center">
+                    <canvas id="pieChart1"></canvas>
+                </div>
+                <div class="card-footer">
+                    <b style="color:#6d7979;font-size:12px">Showing data from @ViewBag.historical.YTD - till date</b>
+                </div>
+            </div>
+        </div>
+    </div>
     <br /> <br />
 
 </div>
+
 <br /><br />
 <script>
 
-  
+
 
     var labellist = ["Fd Created", "Mail Sent", "SMS Sent", "Status Marked", "Not Processed"];
     var bccolor = ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"];
@@ -188,9 +208,9 @@
             div.setAttribute('style', 'display:none')
             div1.setAttribute('style', 'display: block')
             realdiv.setAttribute('style', 'display:block')
-          
-            vdr(@Json.Encode(ViewBag.realtime), labellist, bccolor, bccolorHover);
-           
+
+            vdr(@Json.Encode(ViewBag.realtime.CartFigures), labellist, bccolor, bccolorHover);
+
         }
         return false;
     }
@@ -308,27 +328,27 @@
             realdiv.setAttribute('style', 'display:none')
             vdr1(listofstat, labellist, bccolor, bccolorHover)
         }
-       
+
     }
 </script>
 <script>
-    //function vdr(list, labels, bgcolor, hoverbgcolor) {
+                //function vdr(list, labels, bgcolor, hoverbgcolor) {
 
-    //    var ctxP = document.getElementById("pieChart").getContext('2d');
-    //    var myPieChart = new Chart(ctxP, {
-    //        type: 'pie',
-    //        data: {
-    //            labels: labels,
-    //            datasets: [{
-    //                data: list,
-    //                backgroundColor: bgcolor,
-    //                hoverBackgroundColor: hoverbgcolor
-    //            }]
-    //        },
-    //        options: {
-    //            responsive: true
-    //        }
-    //    });
-    //}
+                //    var ctxP = document.getElementById("pieChart").getContext('2d');
+                //    var myPieChart = new Chart(ctxP, {
+                //        type: 'pie',
+                //        data: {
+                //            labels: labels,
+                //            datasets: [{
+                //                data: list,
+                //                backgroundColor: bgcolor,
+                //                hoverBackgroundColor: hoverbgcolor
+                //            }]
+                //        },
+                //        options: {
+                //            responsive: true
+                //        }
+                //    });
+                //}
 
 </script>

@@ -1,4 +1,4 @@
-﻿
+﻿@using BankDashboard.ModelFd;
 @{
     Layout = null;
 }
@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="~/Content/Sidebar.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <title>_FDLayout</title>
+    <title>FD::Bank Muscat</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -23,32 +23,36 @@
             border-bottom: solid;
             border-color: #FC5E3C;
         }
-        #example{
-            font-size:12px;
+
+        #example {
+            font-size: 12px;
         }
+
         .dataTables_length label select {
-            border-radius: 5.25rem;
+            border-radius: 0.25rem;
             border-color: #b0bdbd;
         }
 
         #action {
             background-image: none;
         }
+
         #success {
             position: fixed;
-            top: 75%;
-            right: 0px;
-            background-color: #11de5a;
+            top: 15%;
+            right: 40%;
+            background-color: #11de5a7d;
             height: 40px;
             width: 225px;
             border-radius: 4px;
             padding: 7px;
         }
+
         #error {
             position: fixed;
-            top: 75%;
-            right: 0px;
-            background-color:red;
+            top: 15%;
+            right: 40%;
+            background-color: #ff000087;
             height: 40px;
             width: 225px;
             border-radius: 4px;
@@ -70,10 +74,16 @@
         </div>
         <div class="col-md-2" style="text-align: center;">
             <img src="~/Images/user.png" style="height: 33px; margin-top: -9px;" />
-            <b style="color:#6d7979;font-size:21px">Sushil Kumar</b>
+            @if (Session["User"] != null)
+            { Tbl_User_Detail user = (Tbl_User_Detail)Session["User"];
+
+                <b style="color:#6d7979;font-size:21px">@Session["USerName"]</b>
+                <b style="color:#6d7979;font-size:12px">(@user.Usergroup)</b>
+            }
+
         </div>
         <div class="col-md-1">
-            <a href="/app/LogIn/LogOout"> <img src="~/Images/Logout.png" height="37" alt="Logout" /></a>
+            <a href="/app/LogIn/Logout"> <img src="~/Images/Logout.png" height="37" alt="Logout" /></a>
         </div>
     </nav>
 
@@ -84,23 +94,24 @@
 
                 <div class="sidebar">
                     <a class="@ViewBag.OverView" href="/app/FD/OverView">
-                       <img src="~/Images/dashboard.png" /> Overview
+                        <img src="~/Images/dashboard.png" /> Overview
                     </a>
                     <a class="@ViewBag.report" href="/app/FD/Report">
-                      <img src="~/Images/report.png" /> Reports
+                        <img src="~/Images/report.png" /> Reports
                     </a>
                     <a class="@ViewBag.rbtconfg" href="/app/FD/RobotConfig">
-                      <img src="~/Images/robot.png" height="28" /> Robot Config
+                        <img src="~/Images/robot.png" height="28" /> Robot Config
                     </a>
                     <a class="@ViewBag.sms" href="/app/FD/SMSConfig">
-                      <img src="~/Images/sms.png" height="28" /> SMS Config
+                        <img src="~/Images/sms.png" height="28" /> SMS Config
                     </a>
                     <a class="@ViewBag.email" href="/app/FD/EmailConfig">
-                      <img src="~/Images/email.png" height="28" /> Email Config
+                        <img src="~/Images/email.png" height="28" /> Email Config
                     </a>
                     <a class="@ViewBag.term" href="/app/FD/TLConfig">
-                      <img src="~/Images/term.png" height="28" /> TL Config
+                        <img src="~/Images/term.png" height="28" /> TL Config
                     </a>
+                   
                 </div>
             </div>
             <div class="col-md-10" id="contentDiv">
@@ -120,7 +131,6 @@
                             <b style="color:white">@TempData["Error"]</b>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
@@ -129,7 +139,7 @@
 
 
     <footer>
-        <hr /> 
+        <hr />
         <p><center>&copy; @DateTime.Now.Year - Grid Infocom Pvt. Ltd.</center></p>
     </footer>
     @RenderSection("scripts", required: false)
@@ -149,10 +159,8 @@
             var table = $('#example').DataTable();
             $('#example tbody').on('click', 'tr', function () {
                 var data = table.row(this).data();
-                // alert('You clicked on ' + data[0] + '\'s row');
             });
-           
-           
+
             $('.Count').each(function () {
                 var $this = $(this);
                 jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {

@@ -8,7 +8,7 @@ namespace BankDashboard.ModelFd
 
     public partial class FDRequest
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         public string CustomerNumber { get; set; }
 
@@ -37,6 +37,8 @@ namespace BankDashboard.ModelFd
         public string FDAccNo { get; set; }
 
         public string PaymentMethod { get; set; }
-        public string Status { get; set; }
+
+        public string RequestStatus { get; set; }
     }
+    
 }

@@ -66,6 +66,7 @@
             <table id="example" class="table-bordered table table-striped table-condensed " style="text-align:center">
                 <thead style="background-color: #090c5d;color: white;">
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Value</th>
                         <th>Description</th>
@@ -77,12 +78,13 @@
                     {
                         foreach (var item in ViewBag.RbConfigList)
                         {
-                            <tr>
-                                <td>@item.Name</td>
-                                <td>@item.Value</td>
-                                <td>@item.Description</td>
-                                <td><button class="btn btn-sm btn-success" onclick="OnEditClick(@Json.Encode(item))" data-toggle="modal" data-target="#modalContactForm">Edit</button></td>
-                            </tr>
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.Value</td>
+                        <td>@item.Description</td>
+                        <td><button class="btn btn-sm btn-success" onclick="OnEditClick(@Json.Encode(item))" data-toggle="modal" data-target="#modalContactForm">Edit</button></td>
+                    </tr>
                         }
                     }
                 </tbody>
