@@ -43,7 +43,7 @@ namespace BankDashboard.Controllers
                 list.Add(fdList.Where(x => x.MailSent.Replace(" ", "").Equals("ValidFD-MailSent")).ToList().Count());
                 list.Add(fdList.Where(x => x.SMSSent.Replace(" ", "").Equals("ValidFD-SMSCreated")).ToList().Count());
                 list.Add(fdList.Where(x => x.MarkedStatusInMB.Replace(" ", "").Equals("ValidFD-StatusMarked")).ToList().Count());
-                list.Add(4);
+                list.Add(fdList.Where(x => string.IsNullOrEmpty(x.FDCreated) && string.IsNullOrEmpty(x.MailSent) && string.IsNullOrEmpty(x.SMSSent) && string.IsNullOrEmpty(x.MarkedStatusInMB)).Count());
                 chartobj.CartFigures = list;
             }
             else
@@ -55,7 +55,7 @@ namespace BankDashboard.Controllers
                 list.Add(fdList.Where(x => x.MailSent.Replace(" ", "").Equals("ValidFD-MailSent")).ToList().Count());
                 list.Add(fdList.Where(x => x.SMSSent.Replace(" ", "").Equals("ValidFD-SMSCreated")).ToList().Count());
                 list.Add(fdList.Where(x => x.MarkedStatusInMB.Replace(" ", "").Equals("ValidFD-StatusMarked")).ToList().Count());
-                list.Add(4);
+                list.Add(fdList.Where(x => string.IsNullOrEmpty(x.FDCreated) && string.IsNullOrEmpty(x.MailSent) && string.IsNullOrEmpty(x.SMSSent) && string.IsNullOrEmpty(x.MarkedStatusInMB)).Count());
                 chartobj.CartFigures = list;
             }
             return chartobj;
@@ -67,7 +67,7 @@ namespace BankDashboard.Controllers
             List<BOT_Status> botstats = db.BOT_Status.Where(x => x.EndTime != null).ToList();
             List<FDRequest> Fdlist = db.FDRequests.ToList();
             obj.Requested = Fdlist.Count().ToString();
-            obj.Processed = Fdlist.Where(x => x.FDCreated != null && x.MailSent != null && x.SMSSent != null && x.MarkedStatusInMB != null).ToList().Count().ToString();
+            obj.Processed = Fdlist.Where(x => !string.IsNullOrEmpty(x.FDCreated) && !string.IsNullOrEmpty(x.MailSent) && !string.IsNullOrEmpty(x.SMSSent)&& !string.IsNullOrEmpty(x.MarkedStatusInMB )).ToList().Count().ToString();
             long totalbothour = 0;
             foreach (var item in botstats)
             {
